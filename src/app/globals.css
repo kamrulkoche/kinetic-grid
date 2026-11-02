@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink-950: #04070d;
+  --color-ink-900: #070b14;
+  --color-ink-800: #0d1320;
+  --color-ink-700: #151d2d;
+  --color-amber-300: #ffd54a;
+  --color-amber-400: #ffb21e;
+  --color-ember-500: #ff7a18;
+  --color-fog-200: #c9d1dc;
+  --color-fog-400: #8a94a6;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --header-h: 72px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-950);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-amber-400);
+  color: #120a00;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-14;
+  }
+
+  .eyebrow {
+    @apply text-[10px] font-bold uppercase tracking-[0.3em] text-white/85 sm:text-[11px];
+  }
+
+  .display {
+    @apply font-black uppercase leading-[0.9] tracking-[-0.01em];
+  }
+
+  .btn-amber {
+    background-image: linear-gradient(90deg, var(--color-amber-400), var(--color-amber-300));
+    color: #120a00;
+    box-shadow:
+      0 0 0 1px rgb(255 178 30 / 0.5),
+      0 10px 30px -10px rgb(255 140 26 / 0.7);
+  }
+  .btn-amber:hover {
+    box-shadow:
+      0 0 0 1px rgb(255 213 74 / 0.9),
+      0 14px 40px -8px rgb(255 140 26 / 0.95);
+  }
+
+  .hairline {
+    border-color: rgb(255 255 255 / 0.14);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
